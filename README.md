@@ -60,6 +60,10 @@ streamlit run main.py
 
 4. **Result:**  
    See a modern summary table and pass/fail feedback.
+---
+## 🎥 Demo Video
+[![Watch the Demo](https://img.youtube.com/vi/PbGk8W_R8uI/0.jpg)](https://youtu.be/PbGk8W_R8uI?si=cO-Fsr4r1U79rf21)
+> Click the image above to watch the RealEyes demo on YouTube!
 
 ---
 
