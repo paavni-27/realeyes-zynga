@@ -3,12 +3,15 @@
 > **"Because your ID might lie, but your face won't"**
 
 ## What is this?
+RealEyes is a Streamlit-based web application that performs age and identity verification using any government identification card. It compares a user's selfie to the extracted face from an ID image and verifies whether they match and meet the age criteria (18+). Built as part of a Zynga hackathon by Team CodeVita
 
-A modern Streamlit app for demoing face verification and age check using:
-- OCR on Aadhar card image to extract DOB
-- Real-time selfie camera with blur/light/centering feedback
-- Face extraction & comparison (template matching)
-- Age check (18+)
+Features:
+- Upload a government ID
+- Capture a live selfie using your webcam with real-time blur/light/centering feedback
+- Extract DOB and ID photo using OCR (EasyOCR)
+- Detect and compare faces using OpenCV and cosine similarity
+- Display face match confidence score
+- Calculate and verify if the person is 18+
 
 ---
 
