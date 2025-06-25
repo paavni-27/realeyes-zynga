@@ -66,6 +66,9 @@ streamlit run main.py
 > Click the image above to watch the RealEyes demo on YouTube!
 
 ---
+## 🌐 Live Website  
+Check out the live app here: [https://realeyes.streamlit.app](https://realeyes.streamlit.app)
+---
 
 ## ⚡ Build an Executable 
 
