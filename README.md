@@ -1,6 +1,6 @@
 # RealEyes: Face & Age Verification System
 
-> **"Because your ID might lie, but your face won't"**
+> **Because your ID might lie, but your face won't**
 
 ## What is this?
 RealEyes is a Streamlit-based web application that performs age and identity verification using any government identification card. It compares a user's selfie to the extracted face from an ID image and verifies whether they match and meet the age criteria (18+). Built as part of a Zynga hackathon by Team CodeVita
@@ -12,6 +12,9 @@ Features:
 - Detect and compare faces using OpenCV and cosine similarity
 - Display face match confidence score
 - Calculate and verify if the person is 18+
+
+### 🌐 Live Website  
+Check out the live app here: [https://realeyes.streamlit.app](https://realeyes.streamlit.app)  
 
 ---
 
@@ -62,12 +65,15 @@ streamlit run main.py
    See a modern summary table and pass/fail feedback.
 ---
 ## 🎥 Demo Video
+
+
+Uploading VIDEO-2025-06-25-22-56-37.mp4…
+
+
 [![Watch the Demo](https://img.youtube.com/vi/PbGk8W_R8uI/0.jpg)](https://youtu.be/PbGk8W_R8uI?si=cO-Fsr4r1U79rf21)
+
 > Click the image above to watch the RealEyes demo on YouTube!
 
----
-## 🌐 Live Website  
-Check out the live app here: [https://realeyes.streamlit.app](https://realeyes.streamlit.app)
 ---
 
 ## ⚡ Build an Executable 
@@ -99,6 +105,6 @@ pyinstaller --onefile --add-data ".streamlit:./.streamlit" main.py
 
 ---
 
-##License
+## License
 
 MIT License (see [LICENSE](LICENSE) file)
