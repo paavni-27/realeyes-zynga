@@ -45,7 +45,7 @@ Experience RealEyes in action: **[https://realeyes.streamlit.app](https://realey
 
 3. **Install Dependencies**
    ```bash
-   pip install -r requirements.txt
+   python -m pip install -r requirements.txt
    ```
 
 4. **Launch the Application**
@@ -208,14 +208,14 @@ streamlit run main.py
 FROM python:3.9-slim
 COPY . /app
 WORKDIR /app
-RUN pip install -r requirements.txt
+RUN python -m pip install -r requirements.txt
 EXPOSE 8501
 CMD ["streamlit", "run", "main.py"]
 ```
 
 ### Executable Creation
 ```bash
-pip install pyinstaller
+python -m pip install pyinstaller
 pyinstaller --onefile --add-data ".streamlit:./.streamlit" main.py
 ```
 
@@ -251,8 +251,8 @@ We welcome contributions! Please see our contributing guidelines:
 ```bash
 git clone https://github.com/yourusername/realeyes-verification.git
 cd realeyes-verification
-pip install -r requirements.txt
-pip install -r requirements-dev.txt  # Development dependencies
+python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt  # Development dependencies
 ```
 
 ---
