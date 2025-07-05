@@ -16,7 +16,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 # Page configuration
 st.set_page_config(
     page_title="RealEyes - Identity Verification",
-    page_icon="👁️",
+    page_icon="🔍",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -148,7 +148,7 @@ def check_image_quality(img):
     return quality_checks
 
 def display_quality_feedback(quality_checks):
-    st.markdown('<h4 class="quality-header">📊 Image Quality Analysis</h4>', unsafe_allow_html=True)
+    st.markdown('<h4 class="quality-header">Image Quality Analysis</h4>', unsafe_allow_html=True)
     
     # Create metrics in a modern layout
     col1, col2, col3, col4 = st.columns(4)
@@ -156,71 +156,71 @@ def display_quality_feedback(quality_checks):
     with col1:
         blur_score = quality_checks['blur_score']
         if blur_score > 100:
-            st.success("🔍 **Sharpness**\n\nExcellent")
+            st.success("**Sharpness**\n\nExcellent")
         elif blur_score > 50:
-            st.warning("🔍 **Sharpness**\n\nFair")
+            st.warning("**Sharpness**\n\nFair")
         else:
-            st.error("🔍 **Sharpness**\n\nPoor")
+            st.error("**Sharpness**\n\nPoor")
         st.caption(f"Score: {blur_score:.1f}")
     
     with col2:
         brightness = quality_checks['brightness_score']
         if 50 < brightness < 200:
-            st.success("💡 **Lighting**\n\nOptimal")
+            st.success("**Lighting**\n\nOptimal")
         elif brightness <= 50:
-            st.error("💡 **Lighting**\n\nToo Dark")
+            st.error("**Lighting**\n\nToo Dark")
         else:
-            st.warning("💡 **Lighting**\n\nToo Bright")
+            st.warning("**Lighting**\n\nToo Bright")
         st.caption(f"Level: {brightness:.1f}")
     
     with col3:
         contrast = quality_checks['contrast_score']
         if contrast > 30:
-            st.success("🎨 **Contrast**\n\nGood")
+            st.success("**Contrast**\n\nGood")
         elif contrast > 15:
-            st.warning("🎨 **Contrast**\n\nFair")
+            st.warning("**Contrast**\n\nFair")
         else:
-            st.error("🎨 **Contrast**\n\nPoor")
+            st.error("**Contrast**\n\nPoor")
         st.caption(f"Value: {contrast:.1f}")
     
     with col4:
         if quality_checks['face_centered'] and quality_checks['face_size_ok']:
-            st.success("🎯 **Position**\n\nPerfect")
+            st.success("**Position**\n\nPerfect")
         elif quality_checks['face_centered']:
-            st.warning("🎯 **Position**\n\nMove Closer")
+            st.warning("**Position**\n\nMove Closer")
         elif quality_checks['face_size_ok']:
-            st.warning("🎯 **Position**\n\nCenter Face")
+            st.warning("**Position**\n\nCenter Face")
         else:
-            st.error("🎯 **Position**\n\nAdjust")
+            st.error("**Position**\n\nAdjust")
     
     # Overall quality with modern styling
     quality = quality_checks['overall_quality']
     if quality == 'Excellent':
-        st.success(f"🌟 **Overall Quality: {quality}** - Perfect for verification!")
+        st.success(f"**Overall Quality: {quality}** - Perfect for verification!")
     elif quality == 'Good':
-        st.success(f"✅ **Overall Quality: {quality}** - Ready for processing")
+        st.success(f"**Overall Quality: {quality}** - Ready for processing")
     elif quality == 'Fair':
-        st.warning(f"⚠️ **Overall Quality: {quality}** - Acceptable but could be improved")
+        st.warning(f"**Overall Quality: {quality}** - Acceptable but could be improved")
     else:
-        st.error(f"❌ **Overall Quality: {quality}** - Please retake for better results")
+        st.error(f"**Overall Quality: {quality}** - Please retake for better results")
     
     # Improvement suggestions
     tips = []
     if quality_checks['blur_score'] <= 100:
-        tips.append("🔍 **Focus:** Hold camera steady and ensure good focus")
+        tips.append("**Focus:** Hold camera steady and ensure good focus")
     if quality_checks['brightness_score'] <= 50:
-        tips.append("💡 **Lighting:** Move to a brighter area or add lighting")
+        tips.append("**Lighting:** Move to a brighter area or add lighting")
     elif quality_checks['brightness_score'] >= 200:
-        tips.append("🌤️ **Exposure:** Reduce lighting or move away from bright sources")
+        tips.append("**Exposure:** Reduce lighting or move away from bright sources")
     if quality_checks['contrast_score'] <= 20:
-        tips.append("🎨 **Contrast:** Improve lighting conditions for better contrast")
+        tips.append("**Contrast:** Improve lighting conditions for better contrast")
     if not quality_checks['face_centered']:
-        tips.append("🎯 **Positioning:** Center your face in the frame")
+        tips.append("**Positioning:** Center your face in the frame")
     if not quality_checks['face_size_ok']:
-        tips.append("📏 **Distance:** Move closer to the camera")
+        tips.append("**Distance:** Move closer to the camera")
     
     if tips:
-        st.info("💡 **Improvement Tips:**\n" + "\n".join(f"• {tip}" for tip in tips))
+        st.info("**Improvement Tips:**\n" + "\n".join(f"• {tip}" for tip in tips))
 
 # VideoProcessor for webcam
 class VideoProcessor(VideoTransformerBase):
@@ -320,10 +320,11 @@ class VideoProcessor(VideoTransformerBase):
         
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
-# Enhanced CSS with animations and modern design
+# Enhanced CSS with modern professional design
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
     
     /* Global styles */
     .main {
@@ -346,6 +347,7 @@ st.markdown("""
         --text-light: #6B7280;
         --shadow-light: rgba(0, 0, 0, 0.1);
         --shadow-medium: rgba(0, 0, 0, 0.15);
+        --border-light: #E5E7EB;
     }
     
     /* Main container */
@@ -389,14 +391,61 @@ st.markdown("""
         font-style: italic;
     }
     
+    /* Step header styling with modern design */
+    .step-header {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 2rem;
+        padding: 1.5rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 16px;
+        border-left: 6px solid var(--primary-blue);
+        box-shadow: 0 4px 16px var(--shadow-light);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .step-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+    }
+    
+    .step-header i {
+        margin-right: 12px;
+        color: var(--primary-blue);
+        font-size: 1.6rem;
+    }
+    
+    .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+        color: white;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-right: 16px;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    
     /* Card styling */
     .verification-card {
         background: var(--white);
         border-radius: 20px;
-        padding: 2rem;
-        margin: 1.5rem 0;
+        padding: 2.5rem;
+        margin: 2rem 0;
         box-shadow: 0 8px 32px var(--shadow-light);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        border: 1px solid var(--border-light);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
@@ -418,18 +467,53 @@ st.markdown("""
         box-shadow: 0 16px 48px var(--shadow-medium);
     }
     
-    /* Step headers */
-    .step-header {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+    /* Camera guidelines toggle card */
+    .guidelines-card {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border: 2px solid #0ea5e9;
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition: all 0.3s ease;
     }
     
+    .guidelines-header {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 600;
+        color: #0369a1;
+        font-size: 1.1rem;
+    }
+    
+    .guidelines-header i {
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .guidelines-content {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #bae6fd;
+    }
+    
+    .guideline-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.8rem;
+        padding: 0.5rem;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 8px;
+    }
+    
+    .guideline-item i {
+        color: #0369a1;
+        margin-right: 10px;
+        margin-top: 2px;
+        font-size: 0.9rem;
+    }
+    
+    /* Quality header */
     .quality-header {
         font-family: 'Inter', sans-serif;
         font-size: 1.3rem;
@@ -437,6 +521,14 @@ st.markdown("""
         color: var(--text-dark);
         margin-bottom: 1rem;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .quality-header i {
+        color: var(--primary-blue);
     }
     
     /* Progress indicator */
@@ -462,8 +554,8 @@ st.markdown("""
     }
     
     .progress-circle {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
         color: white;
@@ -471,7 +563,7 @@ st.markdown("""
         align-items: center;
         justify-content: center;
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: 1.4rem;
         margin-bottom: 0.75rem;
         box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
         transition: all 0.3s ease;
@@ -632,6 +724,11 @@ st.markdown("""
             flex-direction: row;
             gap: 1rem;
         }
+        
+        .step-header {
+            font-size: 1.4rem;
+            padding: 1rem 1.5rem;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -651,7 +748,7 @@ st.markdown('<div class="main-container">', unsafe_allow_html=True)
 st.markdown("""
 <div style="text-align: center; margin-bottom: 3rem;">
     <h1 class="main-title">
-        👁️ RealEyes
+        <i class="fas fa-eye"></i> RealEyes
     </h1>
     <p class="subtitle">
         "Because your ID might lie, but your face won't"
@@ -663,19 +760,19 @@ st.markdown("""
 st.markdown("""
 <div class="progress-container">
     <div class="progress-step">
-        <div class="progress-circle">📄</div>
+        <div class="progress-circle"><i class="fas fa-file-alt"></i></div>
         <div class="progress-label">Upload Document</div>
     </div>
     <div class="progress-step">
-        <div class="progress-circle">📸</div>
+        <div class="progress-circle"><i class="fas fa-camera"></i></div>
         <div class="progress-label">Capture Selfie</div>
     </div>
     <div class="progress-step">
-        <div class="progress-circle">🔍</div>
+        <div class="progress-circle"><i class="fas fa-search"></i></div>
         <div class="progress-label">Quality Check</div>
     </div>
     <div class="progress-step">
-        <div class="progress-circle">✅</div>
+        <div class="progress-circle"><i class="fas fa-check-circle"></i></div>
         <div class="progress-label">Verification</div>
     </div>
 </div>
@@ -683,7 +780,13 @@ st.markdown("""
 
 # Document Upload Section
 st.markdown('<div class="verification-card">', unsafe_allow_html=True)
-st.markdown('<h3 class="step-header">📄 Step 1: Government ID Upload</h3>', unsafe_allow_html=True)
+st.markdown('''
+<div class="step-header">
+    <span class="step-number">1</span>
+    <i class="fas fa-id-card"></i>
+    Government ID Upload
+</div>
+''', unsafe_allow_html=True)
 st.markdown("Upload a clear, high-quality image of your government-issued identification document")
 
 col1, col2 = st.columns([2, 1])
@@ -697,20 +800,26 @@ with col1:
 
 with col2:
     if aadhar_file:
-        st.success("✅ Document uploaded successfully!")
+        st.success("Document uploaded successfully!")
         st.session_state.aadhar_processed = True
     else:
-        st.info("📋 Please upload your ID document")
+        st.info("Please upload your ID document")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Selfie Verification Section
 st.markdown('<div class="verification-card">', unsafe_allow_html=True)
-st.markdown('<h3 class="step-header">📸 Step 2: Selfie Verification</h3>', unsafe_allow_html=True)
+st.markdown('''
+<div class="step-header">
+    <span class="step-number">2</span>
+    <i class="fas fa-user-circle"></i>
+    Selfie Verification
+</div>
+''', unsafe_allow_html=True)
 
 selfie_option = st.radio(
     "Choose your preferred verification method:", 
-    ("🎥 Live Camera with Real-time Feedback", "📁 Upload from Files"), 
+    ("Live Camera with Real-time Feedback", "Upload from Files"), 
     horizontal=True, 
     key="selfie_option"
 )
@@ -718,19 +827,41 @@ selfie_option = st.radio(
 selfie_img = None
 selfie_file = None
 
-if selfie_option == "🎥 Live Camera with Real-time Feedback":
-    st.markdown("### 🎥 Live Camera Setup")
+if selfie_option == "Live Camera with Real-time Feedback":
+    st.markdown("### Live Camera Setup")
     
-    # Enhanced camera guidelines
-    st.info("""
-    📋 **Camera Guidelines for Best Results:**
-    • Position your face within the white circles
-    • Ensure bright, even lighting (avoid shadows)
-    • Keep the camera steady for maximum clarity
-    • Maintain direct eye contact with the camera
-    • Wait for all indicators to show green before capturing
-    • Remove glasses or hats if possible
-    """)
+    # Camera guidelines as toggle card
+    with st.expander("Camera Guidelines for Best Results", expanded=False):
+        st.markdown("""
+        <div class="guidelines-card">
+            <div class="guidelines-content">
+                <div class="guideline-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Position your face within the white circles</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Ensure bright, even lighting (avoid shadows)</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-hand-paper"></i>
+                    <span>Keep the camera steady for maximum clarity</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-eye"></i>
+                    <span>Maintain direct eye contact with the camera</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Wait for all indicators to show green before capturing</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-glasses"></i>
+                    <span>Remove glasses or hats if possible</span>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
     
     cam_col1, cam_col2 = st.columns([3, 2])
     
@@ -750,12 +881,12 @@ if selfie_option == "🎥 Live Camera with Real-time Feedback":
         )
     
     with cam_col2:
-        st.markdown('<h4 class="quality-header">📊 Live Quality Monitor</h4>', unsafe_allow_html=True)
+        st.markdown('<h4 class="quality-header"><i class="fas fa-chart-line"></i> Live Quality Monitor</h4>', unsafe_allow_html=True)
         quality_placeholder = st.empty()
         
         # Enhanced capture button
         capture_button = st.button(
-            "📸 Capture Perfect Selfie", 
+            "Capture Perfect Selfie", 
             type="primary", 
             use_container_width=True,
             help="Click when all quality indicators are green"
@@ -771,14 +902,14 @@ if selfie_option == "🎥 Live Camera with Real-time Feedback":
                 selfie_file = "captured"
                 st.session_state.selfie_captured = True
                 
-                st.success("🎉 Perfect! Selfie captured successfully!")
+                st.success("Perfect! Selfie captured successfully!")
                 st.image(selfie_img, caption="Your Captured Selfie", use_container_width=True)
                 
                 # Auto-scroll to next section
                 time.sleep(1)
                 st.rerun()
             else:
-                st.error("📷 Camera not ready. Please ensure camera is active and try again.")
+                st.error("Camera not ready. Please ensure camera is active and try again.")
                 selfie_file = None
         
         # Live quality feedback with enhanced UI
@@ -797,18 +928,18 @@ if selfie_option == "🎥 Live Camera with Real-time Feedback":
                 with metrics_col1:
                     blur_score = quality_checks['blur_score']
                     if blur_score > 100:
-                        st.success("🔍 Sharp")
+                        st.success("Sharp")
                     elif blur_score > 50:
-                        st.warning("🔍 Fair")
+                        st.warning("Fair")
                     else:
-                        st.error("🔍 Blurry")
+                        st.error("Blurry")
                 
                 with metrics_col2:
                     brightness = quality_checks['brightness_score']
                     if 50 < brightness < 200:
-                        st.success("💡 Good Light")
+                        st.success("Good Light")
                     else:
-                        st.error("💡 Adjust Light")
+                        st.error("Adjust Light")
                 
                 # Overall readiness status
                 overall_ready = (
@@ -819,13 +950,13 @@ if selfie_option == "🎥 Live Camera with Real-time Feedback":
                 )
                 
                 if overall_ready:
-                    st.success("🎯 **Ready to Capture!**")
+                    st.success("**Ready to Capture!**")
                     st.balloons()
                 else:
-                    st.info("📍 Adjust position for better quality")
+                    st.info("Adjust position for better quality")
 
 else:
-    st.markdown("### 📁 File Upload")
+    st.markdown("### File Upload")
     upload_col1, upload_col2 = st.columns([2, 1])
     
     with upload_col1:
@@ -839,7 +970,7 @@ else:
     with upload_col2:
         if selfie_file is not None:
             selfie_img = np.array(Image.open(selfie_file).convert('RGB'))
-            st.success("✅ Selfie uploaded!")
+            st.success("Selfie uploaded!")
             st.session_state.selfie_captured = True
 
 st.markdown('</div>', unsafe_allow_html=True)
@@ -847,15 +978,21 @@ st.markdown('</div>', unsafe_allow_html=True)
 # Processing Section - Only show if both files are uploaded
 if aadhar_file and (selfie_img is not None or selfie_file is not None):
     st.markdown("---")
-    st.markdown('<h2 class="step-header">🔍 Processing & Verification</h2>', unsafe_allow_html=True)
+    st.markdown('''
+    <div class="step-header">
+        <span class="step-number">3</span>
+        <i class="fas fa-cogs"></i>
+        Processing & Verification
+    </div>
+    ''', unsafe_allow_html=True)
     
     # Load and process images
     aadhar_img = np.array(Image.open(aadhar_file).convert('RGB'))
     
     if selfie_file == "captured" and selfie_img is not None:
-        st.success("🎥 Using captured selfie from live camera")
+        st.success("Using captured selfie from live camera")
     elif selfie_img is not None:
-        st.info("📁 Using uploaded selfie image")
+        st.info("Using uploaded selfie image")
         
         # Quality check for uploaded images
         st.markdown('<div class="verification-card">', unsafe_allow_html=True)
@@ -863,15 +1000,21 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
         display_quality_feedback(quality_checks)
         
         if quality_checks['overall_quality'] == 'Poor':
-            st.error("⚠️ **Image quality needs improvement!** Consider retaking for better results.")
-            st.info("💡 **Pro Tips:** Use bright lighting, steady hands, and center your face for optimal results.")
+            st.error("**Image quality needs improvement!** Consider retaking for better results.")
+            st.info("**Pro Tips:** Use bright lighting, steady hands, and center your face for optimal results.")
         st.markdown('</div>', unsafe_allow_html=True)
     
     # Step 1: DOB Extraction with enhanced OCR
     st.markdown('<div class="verification-card">', unsafe_allow_html=True)
-    st.markdown('<h3 class="step-header">1️⃣ Document Analysis & DOB Extraction</h3>', unsafe_allow_html=True)
+    st.markdown('''
+    <div class="step-header">
+        <span class="step-number">3.1</span>
+        <i class="fas fa-file-search"></i>
+        Document Analysis & DOB Extraction
+    </div>
+    ''', unsafe_allow_html=True)
     
-    with st.spinner('🔍 Analyzing document with advanced OCR technology...'):
+    with st.spinner('Analyzing document with advanced OCR technology...'):
         try:
             reader = easyocr.Reader(['en'], gpu=False)
             result = reader.readtext(aadhar_img, detail=0, paragraph=True)
@@ -886,45 +1029,51 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
         # Enhanced metrics display
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("📅 Date of Birth", dob_str)
+            st.metric("Date of Birth", dob_str)
         with col2:
-            st.metric("🎂 Current Age", f"{age} years" if age is not None else "N/A")
+            st.metric("Current Age", f"{age} years" if age is not None else "N/A")
         with col3:
             if age is not None:
-                status = "✅ Adult" if age >= 18 else "❌ Minor"
+                status = "Adult" if age >= 18 else "Minor"
                 color = "normal" if age >= 18 else "inverse"
             else:
-                status = "❓ Unknown"
+                status = "Unknown"
                 color = "normal"
-            st.metric("📊 Status", status)
+            st.metric("Status", status)
         
         if age is not None:
-            st.success(f"✅ Successfully extracted: **{dob_str}** (Age: **{age}** years)")
+            st.success(f"Successfully extracted: **{dob_str}** (Age: **{age}** years)")
         else:
-            st.warning("⚠️ Date extracted but age calculation failed")
+            st.warning("Date extracted but age calculation failed")
     else:
-        st.error("❌ Could not extract date of birth. Please ensure the document image is clear and readable.")
-        st.info("💡 **Tips:** Ensure good lighting, avoid shadows, and make sure text is clearly visible")
+        st.error("Could not extract date of birth. Please ensure the document image is clear and readable.")
+        st.info("**Tips:** Ensure good lighting, avoid shadows, and make sure text is clearly visible")
         st.stop()
     
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Step 2: Enhanced Face Extraction
     st.markdown('<div class="verification-card">', unsafe_allow_html=True)
-    st.markdown('<h3 class="step-header">2️⃣ Advanced Face Detection & Extraction</h3>', unsafe_allow_html=True)
+    st.markdown('''
+    <div class="step-header">
+        <span class="step-number">3.2</span>
+        <i class="fas fa-user-check"></i>
+        Advanced Face Detection & Extraction
+    </div>
+    ''', unsafe_allow_html=True)
     
-    with st.spinner('👤 Detecting and extracting faces using AI...'):
+    with st.spinner('Detecting and extracting faces using AI...'):
         aadhar_face = extract_face(cv2.cvtColor(aadhar_img, cv2.COLOR_RGB2BGR))
         selfie_face = extract_face(cv2.cvtColor(selfie_img, cv2.COLOR_RGB2BGR))
     
     if aadhar_face is not None and selfie_face is not None:
-        st.success("✅ Faces successfully detected in both images!")
+        st.success("Faces successfully detected in both images!")
         
         face_col1, face_col2 = st.columns(2)
         with face_col1:
-            st.image(aadhar_face[:, :, ::-1], caption="📄 Face from Government ID", use_container_width=True)
+            st.image(aadhar_face[:, :, ::-1], caption="Face from Government ID", use_container_width=True)
         with face_col2:
-            st.image(selfie_face[:, :, ::-1], caption="📸 Face from Selfie", use_container_width=True)
+            st.image(selfie_face[:, :, ::-1], caption="Face from Selfie", use_container_width=True)
     else:
         missing = []
         if aadhar_face is None:
@@ -932,18 +1081,24 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
         if selfie_face is None:
             missing.append("selfie")
         
-        st.error(f"❌ Could not detect faces in: {', '.join(missing)}")
-        st.info("💡 **Troubleshooting:** Ensure faces are clearly visible, well-lit, and not obscured by shadows or accessories")
+        st.error(f"Could not detect faces in: {', '.join(missing)}")
+        st.info("**Troubleshooting:** Ensure faces are clearly visible, well-lit, and not obscured by shadows or accessories")
         st.stop()
     
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Step 3: Enhanced Face Verification
     st.markdown('<div class="verification-card">', unsafe_allow_html=True)
-    st.markdown('<h3 class="step-header">3️⃣ Biometric Face Verification</h3>', unsafe_allow_html=True)
+    st.markdown('''
+    <div class="step-header">
+        <span class="step-number">3.3</span>
+        <i class="fas fa-fingerprint"></i>
+        Biometric Face Verification
+    </div>
+    ''', unsafe_allow_html=True)
     
     try:
-        with st.spinner('🔍 Performing advanced biometric comparison...'):
+        with st.spinner('Performing advanced biometric comparison...'):
             # Enhanced face comparison with multiple methods
             target_size = (128, 128)
             aadhar_resized = cv2.resize(aadhar_face, target_size)
@@ -979,94 +1134,100 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
         result_col1, result_col2, result_col3, result_col4 = st.columns(4)
         
         with result_col1:
-            st.metric("🎯 Similarity Score", f"{sim_score:.1f}%")
+            st.metric("Similarity Score", f"{sim_score:.1f}%")
         
         with result_col2:
-            verification_status = "✅ VERIFIED" if match else "❌ NOT VERIFIED"
-            st.metric("🔐 Verification", verification_status)
+            verification_status = "VERIFIED" if match else "NOT VERIFIED"
+            st.metric("Verification", verification_status)
         
         with result_col3:
             if sim_score > 75:
-                confidence = "🟢 High"
+                confidence = "High"
             elif sim_score > 50:
-                confidence = "🟡 Medium"
+                confidence = "Medium"
             else:
-                confidence = "🔴 Low"
-            st.metric("📊 Confidence", confidence)
+                confidence = "Low"
+            st.metric("Confidence", confidence)
         
         with result_col4:
-            method = "🎥 Live Camera" if selfie_file == "captured" else "📁 File Upload"
-            st.metric("📸 Method", method)
+            method = "Live Camera" if selfie_file == "captured" else "File Upload"
+            st.metric("Method", method)
         
         # Detailed feedback
         if match:
             if sim_score > 75:
-                st.success(f"🎉 **Excellent Match!** Similarity score: **{sim_score:.1f}%** - High confidence verification")
+                st.success(f"**Excellent Match!** Similarity score: **{sim_score:.1f}%** - High confidence verification")
             elif sim_score > 60:
-                st.success(f"✅ **Good Match!** Similarity score: **{sim_score:.1f}%** - Reliable verification")
+                st.success(f"**Good Match!** Similarity score: **{sim_score:.1f}%** - Reliable verification")
             else:
-                st.success(f"✅ **Identity Verified!** Similarity score: **{sim_score:.1f}%** - Acceptable match")
+                st.success(f"**Identity Verified!** Similarity score: **{sim_score:.1f}%** - Acceptable match")
         else:
-            st.error(f"❌ **Identity verification failed.** Similarity score: **{sim_score:.1f}%**")
-            st.info("💡 **Suggestions:** Ensure good lighting, remove accessories, and face the camera directly")
+            st.error(f"**Identity verification failed.** Similarity score: **{sim_score:.1f}%**")
+            st.info("**Suggestions:** Ensure good lighting, remove accessories, and face the camera directly")
         
         # Technical details (collapsible)
-        with st.expander("🔬 Technical Details"):
+        with st.expander("Technical Details"):
             st.write(f"**Template Matching Score:** {similarity:.3f}")
             st.write(f"**Histogram Correlation:** {hist_similarity:.3f}")
             st.write(f"**Combined Score:** {combined_score:.3f}")
             st.write(f"**Threshold Used:** {threshold:.3f}")
-            st.info("ℹ️ **Note:** This demo uses OpenCV for face comparison. Production systems use advanced deep learning models for higher accuracy.")
+            st.info("**Note:** This demo uses OpenCV for face comparison. Production systems use advanced deep learning models for higher accuracy.")
         
     except Exception as e:
-        st.error(f"❌ Face verification failed: {str(e)}")
-        st.info("💡 Please try again with clearer images")
+        st.error(f"Face verification failed: {str(e)}")
+        st.info("Please try again with clearer images")
         st.stop()
     
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Step 4: Final Verification Summary
     st.markdown('<div class="verification-card">', unsafe_allow_html=True)
-    st.markdown('<h3 class="step-header">4️⃣ Final Verification Summary</h3>', unsafe_allow_html=True)
+    st.markdown('''
+    <div class="step-header">
+        <span class="step-number">4</span>
+        <i class="fas fa-clipboard-check"></i>
+        Final Verification Summary
+    </div>
+    ''', unsafe_allow_html=True)
     
     if age is not None:
         age_passed = age >= 18
         
         # Create comprehensive summary
-        st.markdown("### 📋 Complete Verification Report")
+        st.markdown("### Complete Verification Report")
         
         # Summary metrics
         summary_col1, summary_col2, summary_col3 = st.columns(3)
         
         with summary_col1:
-            identity_status = "✅ Passed" if match else "❌ Failed"
-            st.metric("🆔 Identity Verification", identity_status)
+            identity_status = "Passed" if match else "Failed"
+            st.metric("Identity Verification", identity_status)
         
         with summary_col2:
-            age_status = "✅ Passed" if age_passed else "❌ Failed"
-            st.metric("🎂 Age Verification", age_status)
+            age_status = "Passed" if age_passed else "Failed"
+            st.metric("Age Verification", age_status)
         
         with summary_col3:
-            overall_status = "✅ APPROVED" if (match and age_passed) else "❌ REJECTED"
-            st.metric("🏆 Overall Status", overall_status)
+            overall_status = "APPROVED" if (match and age_passed) else "REJECTED"
+            st.metric("Overall Status", overall_status)
         
         # Detailed summary table
         summary_data = {
             "Verification Parameter": [
-                "📄 Document Validity",
-                "👤 Face Detection", 
-                "🔍 Identity Match",
-                "🎂 Age Requirement (18+)",
-                "📊 Image Quality",
-                "🏆 Final Decision"
+                "Document Validity",
+                "Face Detection", 
+                "Identity Match",
+                "Age Requirement (18+)",
+                "Image Quality",
+                "Final Decision"
             ],
             "Result": [
-                "✅ Valid" if dob_str else "❌ Invalid",
-                "✅ Detected" if (aadhar_face is not None and selfie_face is not None) else "❌ Failed",
-                f"{'✅ Verified' if match else '❌ Failed'} ({sim_score:.1f}%)",
-                f"{'✅ Eligible' if age_passed else '❌ Ineligible'} ({age} years)",
-                f"✅ {quality_checks['overall_quality']}" if 'quality_checks' in locals() else "✅ Good",
-                "✅ **APPROVED**" if (match and age_passed) else "❌ **REJECTED**"
+                "Valid" if dob_str else "Invalid",
+                "Detected" if (aadhar_face is not None and selfie_face is not None) else "Failed",
+                f"{'Verified' if match else 'Failed'} ({sim_score:.1f}%)",
+                f"{'Eligible' if age_passed else 'Ineligible'} ({age} years)",
+                f"{quality_checks['overall_quality']}" if 'quality_checks' in locals() else "Good",
+                "**APPROVED**" if (match and age_passed) else "**REJECTED**"
             ],
             "Details": [
                 f"DOB: {dob_str}" if dob_str else "Could not extract",
@@ -1082,12 +1243,12 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
         
         # Final status with enhanced styling
         if match and age_passed:
-            st.success("🎉 **VERIFICATION COMPLETE!** All security checks passed successfully.")
+            st.success("**VERIFICATION COMPLETE!** All security checks passed successfully.")
             st.balloons()
             
             # Additional success information
             st.info("""
-            ✅ **What happens next:**
+            **What happens next:**
             • Your identity has been successfully verified
             • You meet all age requirements
             • You can proceed with your application
@@ -1095,20 +1256,20 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
             """)
             
         else:
-            st.error("❌ **VERIFICATION INCOMPLETE** - Please review the failed checks above.")
+            st.error("**VERIFICATION INCOMPLETE** - Please review the failed checks above.")
             
             # Provide specific guidance
             failed_checks = []
             if not match:
-                failed_checks.append("🆔 Identity verification failed - faces don't match sufficiently")
+                failed_checks.append("Identity verification failed - faces don't match sufficiently")
             if not age_passed:
-                failed_checks.append("🎂 Age requirement not met - must be 18 or older")
+                failed_checks.append("Age requirement not met - must be 18 or older")
             
             if failed_checks:
                 st.warning("**Failed Checks:**\n" + "\n".join(f"• {check}" for check in failed_checks))
                 
                 st.info("""
-                💡 **Next Steps:**
+                **Next Steps:**
                 • Ensure you're using your own government ID
                 • Take a clear, well-lit selfie
                 • Remove glasses or accessories if possible
@@ -1116,8 +1277,8 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
                 • Try again with better quality images
                 """)
     else:
-        st.warning("⚠️ Could not determine age from the provided document.")
-        st.info("💡 Please ensure the document is clear and the date of birth is visible")
+        st.warning("Could not determine age from the provided document.")
+        st.info("Please ensure the document is clear and the date of birth is visible")
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -1125,7 +1286,7 @@ if aadhar_file and (selfie_img is not None or selfie_file is not None):
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 2rem; color: #6B7280;">
-    <h4>🔒 Privacy & Security</h4>
+    <h4><i class="fas fa-shield-alt"></i> Privacy & Security</h4>
     <p>Your images are processed locally and not stored on our servers. This demo is for educational purposes only.</p>
     <p><strong>RealEyes</strong> - Advanced Identity Verification System | Built with ❤️ using Streamlit</p>
 </div>
